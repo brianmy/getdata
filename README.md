@@ -21,12 +21,12 @@ You should create one R script called run_analysis.R that does the following.
 5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 
 ## Execution Instructions
-run_analysis.R assumes that the input data file (downloaded from https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip) file has already been downloaded, unziped, and available from the project's working directory.
+run_analysis.R assumes that the input data file (downloaded from https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip) has already been downloaded, unziped, and available from the project's working directory.
 
-The project was developed in R Studio and verified that a tidy data file called tidy_mean_data.txt is written into the working directory. The tidy data set is described in CodeBook.md.
+The project was developed and tested in R Studio. The script outputs a tidy data file called tidy_mean_data.txt that is written into the working directory. The tidy data set is described in CodeBook.md.
 
 ## Script Explanation
-Step 0: Project setup
+Step 0: Script setup
 * Define all input data files required for the projects
 
 Step 1: Merges the training and the test sets to create one data set
@@ -34,8 +34,8 @@ Step 1: Merges the training and the test sets to create one data set
 * Combine into one data set 
 
 Step 2: Extracts only the measurements on the mean and standard deviation for each measurement. 
-* Read the features input file 
-* Filter only mean and standard deviation features
+* Read the features.txt input file 
+* Filter only mean and standard deviation
 * Read subject and activity data
 * Combine measurements, activities, and subjects into a single data set
 
