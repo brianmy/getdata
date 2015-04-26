@@ -81,7 +81,7 @@ names(extract_data) <- gsub("Mag","Magnitude",names(extract_data))
 #
 
 tidy_data <- melt(extract_data, id.var = c("Subject", "Activity"))
-tidy_mean_data = dcast(tidy_data , Subject + Activity ~ variable, mean)
+tidy_mean_data <- dcast(tidy_data , Subject + Activity ~ variable, mean)
 
 # Write to output file
 write.table(tidy_mean_data, "./tidy_mean_data.txt", row.names = FALSE)
