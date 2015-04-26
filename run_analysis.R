@@ -11,7 +11,7 @@ subject_train_filename <- "./UCI HAR Dataset/train/Subject_train.txt"
 subject_test_filename <- "./UCI HAR Dataset/test/Subject_test.txt"
 activity_train_filename <- "./UCI HAR Dataset/train/y_train.txt"
 activity_test_filename <- "./UCI HAR Dataset/test/y_test.txt"
-activity_lable_filename <- "./UCI HAR Dataset/activity_labels.txt"
+activity_label_filename <- "./UCI HAR Dataset/activity_labels.txt"
 
 #
 # Step 1: Merges the training and the test sets to create one data set.
@@ -27,6 +27,7 @@ combined_data <- rbind(train_data, test_data)
 #
 # Step 2: Extracts only the measurements on the mean and standard deviation for each measurement.
 #
+
 # Extract mean and standard deviation data
 features_data <- read.table(features_filename, header=FALSE, stringsAsFactors=FALSE)
 extract_features <- features_data[grep("mean|std", features_data[,2]),]
@@ -52,7 +53,7 @@ names(extract_data) <- c(extract_features[ ,2], "Activity", "Subject")
 #
 
 # Get descriptive activity labels from file
-activity_labels_data <- read.table(activity_lable_filename)
+activity_labels_data <- read.table(activity_label_filename)
 
 # Lookup and replace with descriptive activity names
 extract_data$Activity <- as.factor(extract_data$Activity)
@@ -61,10 +62,9 @@ levels(extract_data$Activity) <- activity_labels_data$V2
 # 
 # Step 4: Appropriately labels the data set with descriptive variable names
 #
-#
+
 # Relabel columns
 names(extract_data) <- c(extract_features[ ,2], "Activity", "Subject")
-
 names(extract_data) <- gsub("^t","Time",names(extract_data))
 names(extract_data) <- gsub("^f","Frequency",names(extract_data))
 names(extract_data) <- gsub('Acc',"Acceleration", names(extract_data))
@@ -79,6 +79,7 @@ names(extract_data) <- gsub("Mag","Magnitude",names(extract_data))
 #
 # Step 5: From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 #
+
 tidy_data <- melt(extract_data, id.var = c("Subject", "Activity"))
 tidy_mean_data = dcast(tidy_data , Subject + Activity ~ variable, mean)
 
